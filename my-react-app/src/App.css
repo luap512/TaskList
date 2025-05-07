@@ -1,42 +1,55 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* Container for the whole app */
+.appContainer {
+  display: flex;                    /* Use flexbox for layout */
+  height: 100vh;                    /* Full viewport height */
+  margin: 0;                        /* Remove any margin */
+  padding: 0;                       /* Remove any padding */
+  overflow: hidden;                 /* Prevent scrolling */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Left half for the task form */
+.taskFormDiv {
+  flex: 1;                          /* Take up half the screen */
+  display: flex;
+  flex-direction: column;           /* Stack elements vertically */
+  justify-content: space-between;   /* Align content vertically */
+  padding: 20px;
+  box-sizing: border-box;           /* Include padding in height calculation */
+  height: 100%;                     /* Full height */
+  overflow: hidden;                 /* Prevent scrolling */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Right half for the task list and filter bar */
+.taskListDiv {
+  flex: 1;                          /* Take up half the screen */
+  display: flex;
+  flex-direction: column;           /* Stack elements vertically */
+  justify-content: space-between;   /* Align content vertically */
+  height: 100%;                     /* Full height */
+  padding: 20px;
+  box-sizing: border-box;           /* Include padding in height calculation */
+  overflow: hidden;                 /* Prevent scrolling */
 }
 
-.card {
-  padding: 2em;
+/* Filter bar on top of the right section */
+.filterBarDiv {
+  margin-bottom: 20px;              /* Space between filter and task list */
 }
 
-.read-the-docs {
-  color: #888;
+/* Task list will take the remaining space and allow scrolling */
+.taskList {
+  flex-grow: 1;                     /* Task list will grow to fill available space */
+  overflow-y: auto;                 /* Allow vertical scroll within task list if necessary */
+  margin-top: 10px;                 /* Add some space between the filter bar and the task list */
+}
+
+/* Ensure task list and filter bar take full height */
+.taskListDiv, .taskFormDiv {
+  height: 100%;                     /* Ensure both sections are same height */
+}
+
+/* General styles for the filter bar and form */
+.TaskFilter, .TaskForm {
+  width: 100%;                      /* Full width of the parent container */
+  box-sizing: border-box;           /* Include padding/borders in element width */
 }
