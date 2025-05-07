@@ -1,4 +1,4 @@
-import styles from './App.css';
+import'./App.css';
 import TaskForm from './TaskForm/TaskForm';
 import TaskFilter from './TaskFilter/TaskFilter';
 import TaskList from './TaskList/TaskList';
@@ -14,6 +14,11 @@ function App() {
 
   function toggleCompleted(id) {
     // Task completion toggling logic
+    setTasks(prevtasks =>
+      prevtasks.map(task=>
+        task.id === id ? {...task, completed: !task.completed} : task
+      )
+    );
   }
 
   function changeFilter(value) {
@@ -21,19 +26,19 @@ function App() {
   }
 
   return (
-    <div className={styles.appContainer}>
+    <div>
       {/* Left Half: Task Form */}
-      <div className={styles.taskFormDiv}>
+      <div>
         <TaskForm onSubmit={addTask} />
       </div>
       
       {/* Right Half: Task List and Filter */}
-      <div className={styles.taskListDiv}>
-        <div className={styles.filterBarDiv}>
+      <div>
+        <div>
           <TaskFilter />
         </div>
-        <div className={styles.taskList}>
-          <TaskList tasks={tasks} />
+        <div>
+          <TaskList tasks={tasks} onToggleCompleted={toggleCompleted} />
         </div>
       </div>
     </div>

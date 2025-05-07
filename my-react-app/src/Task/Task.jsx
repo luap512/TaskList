@@ -1,7 +1,7 @@
 
 import styles from '../Task/Task.module.css';
 
-function Task({taskName, dueDate, urgency, importance, completed}) {
+function Task({taskName, dueDate, urgency, importance, completed, onToggle}) {
 
   const urgencyText = urgency === "0" ? "Urgent" : "Not Urgent";
   const importanceText = importance === "0" ? "Important" : "Not Important";
@@ -23,7 +23,13 @@ function Task({taskName, dueDate, urgency, importance, completed}) {
             <p className={styles.taskDueDateP}>{dueDate}</p>
         </div>
         <div className={styles.taskCompletionCheckBoxDiv}>
-            <p className={styles.completionCheckBoxP}>{completed ? "DONE" : "INCOMPLETE"}</p>
+            <label>
+              <input type="checkbox"
+              checked={completed}
+              onChange={onToggle}
+              />
+              {completed ? "Done" : "Incomplete"}
+            </label>
         </div>
       </div>
     </>
