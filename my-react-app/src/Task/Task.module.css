@@ -1,0 +1,291 @@
+/* Spotify-inspired Theme for Updated Task Component
+   Matching the styling of other components with Spotify's dark theme */
+
+/* Base styles and variables */
+:root {
+  --spotify-black: #121212;
+  --spotify-dark-gray: #181818;
+  --spotify-medium-gray: #282828;
+  --spotify-light-gray: #3e3e3e;
+  --spotify-white: #ffffff;
+  --spotify-green: #1ed760;
+  --spotify-light-green: #1fdf64;
+  --spotify-green-hover: #1db954;
+  --spotify-red: #e61e32;
+  --spotify-yellow: #ffbc42;
+  --spotify-blue: #2e77d0;
+  --spotify-purple: #af2896;
+  --spotify-text-gray: #b3b3b3;
+  --font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --border-radius: 8px;
+  --transition: all 0.2s ease;
+}
+
+/* Task card container - updated for 5 columns */
+.taskCardDiv {
+  background-color: var(--spotify-medium-gray);
+  border-radius: var(--border-radius);
+  padding: 16px;
+  width: 100%;
+  max-width: 600px; /* Slightly wider to accommodate more columns */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  margin: 12px auto;
+  font-family: var(--font-family);
+  display: grid;
+  grid-template-columns: 2.5fr 1fr 1fr 1fr 1.2fr;
+  gap: 12px;
+  align-items: center;
+  transition: var(--transition);
+  border-left: 4px solid var(--spotify-green);
+}
+
+.taskCardDiv:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Task name styling */
+.taskNameDiv {
+  overflow: hidden;
+}
+
+.taskNameP {
+  color: var(--spotify-white);
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Urgency styling */
+.taskUrgencyDiv {
+  text-align: center;
+}
+
+.taskUrgencyP {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 12px;
+  display: inline-block;
+  margin: 0;
+  background-color: var(--spotify-dark-gray);
+}
+
+/* Importance styling */
+.taskImportanceDiv {
+  text-align: center;
+}
+
+.taskImportanceP {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 12px;
+  display: inline-block;
+  margin: 0;
+  background-color: var(--spotify-dark-gray);
+}
+
+/* Color variations for urgency and importance */
+.urgent {
+  color: var(--spotify-red);
+}
+
+.notUrgent {
+  color: var(--spotify-text-gray);
+}
+
+.important {
+  color: var(--spotify-yellow);
+}
+
+.notImportant {
+  color: var(--spotify-text-gray);
+}
+
+/* Eisenhower matrix color coding */
+.quadrant1 { /* Urgent & Important */
+  border-left-color: var(--spotify-red);
+}
+
+.quadrant2 { /* Not Urgent but Important */
+  border-left-color: var(--spotify-yellow);
+}
+
+.quadrant3 { /* Urgent but Not Important */
+  border-left-color: var(--spotify-blue);
+}
+
+.quadrant4 { /* Not Urgent & Not Important */
+  border-left-color: var(--spotify-purple);
+}
+
+/* Due date styling */
+.taskDueDateDiv {
+  text-align: center;
+}
+
+.taskDueDateP {
+  color: var(--spotify-text-gray);
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Completion status styling */
+.taskCompletionCheckBoxDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.completionCheckBoxP {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  background-color: var(--spotify-dark-gray);
+}
+
+/* Status text colors */
+.statusDone {
+  color: var(--spotify-green);
+}
+
+.statusIncomplete {
+  color: var(--spotify-text-gray);
+}
+
+/* This is for styling an actual checkbox if you use one */
+.completionCheckBox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--spotify-light-gray);
+  outline: none;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+}
+
+.completionCheckBox:checked {
+  background-color: var(--spotify-green);
+  border-color: var(--spotify-green);
+}
+
+.completionCheckBox:checked::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 6px;
+  width: 6px;
+  height: 10px;
+  border: solid var(--spotify-black);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Status variations */
+.completed {
+  opacity: 0.7;
+  border-left-color: var(--spotify-text-gray);
+}
+
+.completed .taskNameP {
+  text-decoration: line-through;
+  color: var(--spotify-text-gray);
+}
+
+.overdue {
+  border-left-color: var(--spotify-red);
+}
+
+/* Date styling variations */
+.dueSoon {
+  color: var(--spotify-yellow) !important;
+  font-weight: 600;
+}
+
+.overdueDate {
+  color: var(--spotify-red) !important;
+  font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 700px) {
+  .taskCardDiv {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "name name"
+      "urgency importance"
+      "date status";
+    gap: 10px;
+    padding: 12px;
+  }
+  
+  .taskNameDiv {
+    grid-area: name;
+  }
+  
+  .taskUrgencyDiv {
+    grid-area: urgency;
+    text-align: left;
+  }
+  
+  .taskImportanceDiv {
+    grid-area: importance;
+    text-align: right;
+  }
+  
+  .taskDueDateDiv {
+    grid-area: date;
+    text-align: left;
+  }
+  
+  .taskCompletionCheckBoxDiv {
+    grid-area: status;
+    justify-content: flex-end;
+  }
+  
+  .completionCheckBoxP {
+    font-size: 11px;
+    padding: 3px 6px;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+  .taskCardDiv {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "name"
+      "urgency"
+      "importance"
+      "date"
+      "status";
+    text-align: left;
+    gap: 8px;
+  }
+  
+  .taskUrgencyDiv,
+  .taskImportanceDiv,
+  .taskDueDateDiv {
+    text-align: left;
+  }
+  
+  .taskCompletionCheckBoxDiv {
+    text-align: left;
+    justify-content: flex-start;
+  }
+  
+  .completionCheckBoxP {
+    display: inline-block;
+  }
+}
